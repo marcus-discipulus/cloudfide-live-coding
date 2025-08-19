@@ -1,0 +1,1 @@
+// Here we need to test if our way of communicating with Binance API is producing required data

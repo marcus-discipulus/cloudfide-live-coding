@@ -1,0 +1,1 @@
+// Here we need to test functions that analyze price changes

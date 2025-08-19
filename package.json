@@ -21,7 +21,8 @@
   "homepage": "https://github.com/marcus-discipulus/cloudfide-live-coding#readme",
   "dependencies": {
     "express": "^5.1.0",
-    "mocha": "^11.7.1"
+    "mocha": "^11.7.1",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
