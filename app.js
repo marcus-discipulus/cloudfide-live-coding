@@ -11,18 +11,14 @@ const data = {};
 app.get('/symbol/:symbol/', async (req, res, next) => {
     // Cryptocurrency symbol
     const symbol = req.params['symbol'] ?? ''
-    let trades;
+    let trades, analytics;
     if (symbol.length > 0) {
-        // Time range??
+        // We could be getting time range from the queries/params
         trades = await getHistoricalTrades(symbol);
-        // We are getting historical trades between given time
-        // Now we need to analyze it and identify decreases/increases
-        trades.forEach(trade => {
-            const date = new Date(trade.time)
-        })
+        analytics = analyzeTrades(trades)
     }
 
-    res.send(`Here is data: ${JSON.stringify(data, null, 4)}`);
+    res.send(`Here is data: ${JSON.stringify(analytics, null, 4)}`);
 });
 
 

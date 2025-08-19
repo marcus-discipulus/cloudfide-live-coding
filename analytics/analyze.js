@@ -7,6 +7,22 @@ const decreases = []
 export function analyzeTrades(trades) {
   // Here we could be checking prices comparisons and 
   // return number of decreases and increases
+  for (let i = 1; i < trades.length; i++) {
+    const prevTrade = trades[i-1];
+    const currentTrade = trades[i];
+
+    const prevTradePrice = Number(prevTrade['price']);
+    const currentTradePrice = Number(currentTrade['price']);
+
+    if(prevTradePrice < currentTradePrice) {
+      increases.push(currentTrade)
+    }
+
+    if(prevTradePrice > currentTradePrice) {
+      decreases.push(currentTrade)
+    }
+  }
+
   return {
     increases,
     decreases
