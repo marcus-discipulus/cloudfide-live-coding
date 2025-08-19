@@ -1,6 +1,6 @@
 import express from 'express';
 import { WebSocket } from 'ws';
-import { fetchSymbolPrice } from './api/binance.js';
+import { getHistoricalTrades } from './api/binance.js';
 
 const app = express();
 
@@ -16,15 +16,13 @@ const app = express();
 app.get('/symbol/:symbol/', async (req, res, next) => {
     // Cryptocurrency symbol
     const symbol = req.params['symbol'] ?? ''
+    let trades;
     if (symbol.length > 0) {
         // Time range??
-        const symbolPrice = await fetchSymbolPrice('BTCUSDT');
+        trades = await getHistoricalTrades('BTCUSDT', 1755593525395, 1755593704198);
     }
 
-
-
-
-    res.send(`Here is data: ${JSON.stringify(symbolPrice, null, 4)}`);
+    res.send(`Here is data: ${JSON.stringify(trades, null, 4)}`);
 });
 
 

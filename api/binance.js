@@ -1,7 +1,12 @@
-// - Fetch historical market data for a specific cryptocurrency symbol and time range using the API.
-    // How?
+import Binance from 'node-binance-api';
 
-export async function fetchSymbolPrice(symbol) {
-    const url = `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`
-    return fetch(url).then((res) => res.json());
+const binance = new Binance({
+    APIKEY: '<key>',
+    APISECRET: '<secret>',
+    test: true, // if you want to use the sandbox/testnet
+})
+
+export async function getHistoricalTrades(symbol, startTime, endTime) {
+    const trades = await binance.historicalTrades(symbol)
+    return trades.filter(trade => trade.time >= startTime && trade.time <= endTime)
 }
