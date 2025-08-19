@@ -8,5 +8,7 @@ const binance = new Binance({
 
 export async function getHistoricalTrades(symbol, startTime, endTime) {
     const trades = await binance.historicalTrades(symbol)
-    return trades.filter(trade => trade.time >= startTime && trade.time <= endTime)
+    const start = trades[0].time
+    const end = trades[100].time
+    return trades.filter(trade => trade.time >= start && trade.time <= end)
 }
